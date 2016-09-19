@@ -1,0 +1,49 @@
+{
+  "name": "kdspay-backend",
+  "version": "1.0.0",
+  "description": "The backend for Bogue's closed loop payment system, written in Express and Node",
+  "main": "start.js",
+  "scripts": {
+    "start": "babel src -d build && node build/start.js",
+    "watch": "babel src -d build -w",
+    "build": "babel src -d build",
+    "runbuilt": "nodemon build/start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dchao19/KDSPay-backend.git"
+  },
+  "keywords": [
+    "bogue",
+    "payment",
+    "system",
+    "kent",
+    "denver",
+    "school",
+    "kds",
+    "sundevil"
+  ],
+  "author": "Daniel Chao, Mary Chao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dchao19/KDSPay-backend/issues"
+  },
+  "homepage": "https://github.com/dchao19/KDSPay-backend#readme",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-eslint": "^6.1.2",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.14.0",
+    "eslint": "^3.5.0",
+    "eslint-config-google": "^0.6.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "nodemon": "^1.10.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}
