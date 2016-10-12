@@ -1,2 +1,2 @@
 require("babel-polyfill");
-import './server.js';
+require('./server.js');

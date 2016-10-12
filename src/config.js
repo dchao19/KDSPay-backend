@@ -3,9 +3,13 @@ let config = {
     db: {
         username: "",
         password: "",
-        databaseName: "",
-        port: "",
-        hostname: ""
+        databaseName: "money",
+        port: "27017",
+        hostname: "localhost"
+    },
+    auth: {
+        secret: "AUTH0_SECRET",
+        userProfileSecret: "AUTH0_PROFILE_SECRET"
     }
 };
 

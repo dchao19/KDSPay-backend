@@ -1,0 +1,16 @@
+html
+    head
+        title Lol
+    body
+    script(src="https://cdn.auth0.com/js/lock/10.2/lock.min.js")
+
+    div(id="root")
+        script.
+            var lock = new Auth0Lock(
+                'cxZYhQ481nzcUhK2VrvfNxNW2ANWT9qc',
+                'danielchao.auth0.com'
+            );
+            lock.on("authenticated", function(authResult) {
+                console.log(authResult);
+            });
+            lock.show();
