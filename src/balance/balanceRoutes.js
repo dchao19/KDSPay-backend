@@ -8,7 +8,8 @@ let router = express.Router(); //eslint-disable-line
 
 router.get('/', passport.authenticate('jwt', {session: false}), async (req, res) => {
     try {
-        let user = await Account.findOne({email: req.user.email});
+        console.log(req.user);
+        let user = await Account.findOne({userID: req.user.userID});
         if (user) {
             return res.json({
                 success: true,

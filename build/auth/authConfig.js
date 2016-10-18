@@ -32,7 +32,7 @@ var jwtOptions = {
 
 var serializer = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(jwtPayload, done) {
-        var userProfile, user, userData;
+        var userProfile, user, userData, result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -44,7 +44,7 @@ var serializer = function () {
                         userProfile = _context.sent;
                         _context.prev = 3;
                         _context.next = 6;
-                        return _Account2.default.findOne({ email: userProfile.email });
+                        return _Account2.default.findOne({ userID: jwtPayload.sub });
 
                     case 6:
                         user = _context.sent;
@@ -66,23 +66,24 @@ var serializer = function () {
 
 
                         user = new _Account2.default(userData);
-                        user.save();
+                        _context.next = 13;
+                        return user.save();
 
-                        done(null, userData);
-                        _context.next = 18;
-                        break;
+                    case 13:
+                        result = _context.sent;
+                        return _context.abrupt('return', done(null, result));
 
-                    case 15:
-                        _context.prev = 15;
+                    case 17:
+                        _context.prev = 17;
                         _context.t0 = _context['catch'](3);
                         return _context.abrupt('return', done(_context.t0, false));
 
-                    case 18:
+                    case 20:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[3, 15]]);
+        }, _callee, undefined, [[3, 17]]);
     }));
 
     return function serializer(_x, _x2) {

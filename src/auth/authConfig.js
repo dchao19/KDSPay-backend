@@ -15,7 +15,7 @@ let jwtOptions = {
 let serializer = async (jwtPayload, done) => {
     let userProfile = await requestProfile(jwtPayload.sub);
     try {
-        let user = await Account.findOne({email: userProfile.email});
+        let user = await Account.findOne({userID: jwtPayload.sub});
         if (user) {
             return done(null, user);
         }
@@ -28,9 +28,9 @@ let serializer = async (jwtPayload, done) => {
         };
 
         user = new Account(userData);
-        user.save();
+        let result = await user.save();
 
-        done(null, userData);
+        return done(null, result);
     } catch (e) {
         return done(e, false);
     }

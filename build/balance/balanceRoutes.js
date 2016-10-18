@@ -32,14 +32,16 @@ router.get('/', _passport2.default.authenticate('jwt', { session: false }), func
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.prev = 0;
-                        _context.next = 3;
-                        return _Account2.default.findOne({ email: req.user.email });
 
-                    case 3:
+                        console.log(req.user);
+                        _context.next = 4;
+                        return _Account2.default.findOne({ userID: req.user.userID });
+
+                    case 4:
                         user = _context.sent;
 
                         if (!user) {
-                            _context.next = 6;
+                            _context.next = 7;
                             break;
                         }
 
@@ -50,20 +52,20 @@ router.get('/', _passport2.default.authenticate('jwt', { session: false }), func
                             }
                         }));
 
-                    case 6:
-                        return _context.abrupt('return', res.status(404).send(_errors.noAccountError));
+                    case 7:
+                        return _context.abrupt('return', res.status(404).send((0, _errors.noAccountError)()));
 
-                    case 9:
-                        _context.prev = 9;
+                    case 10:
+                        _context.prev = 10;
                         _context.t0 = _context['catch'](0);
                         return _context.abrupt('return', res.status(500).send((0, _errors.internalServerError)()));
 
-                    case 12:
+                    case 13:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[0, 9]]);
+        }, _callee, undefined, [[0, 10]]);
     }));
 
     return function (_x, _x2) {
