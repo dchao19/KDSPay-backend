@@ -20,7 +20,7 @@ var _profileRequest = require('./profileRequest.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var ExtractJWT = _passportJwt2.default.ExtractJwt;
 var JWTStrategy = _passportJwt2.default.Strategy;
@@ -50,14 +50,13 @@ var serializer = function () {
                         user = _context.sent;
 
                         if (!user) {
-                            _context.next = 10;
+                            _context.next = 9;
                             break;
                         }
 
-                        console.log(user);
                         return _context.abrupt('return', done(null, user));
 
-                    case 10:
+                    case 9:
                         userData = {
                             email: userProfile.email,
                             name: userProfile.name,
@@ -68,21 +67,22 @@ var serializer = function () {
 
                         user = new _Account2.default(userData);
                         user.save();
+
                         done(null, userData);
-                        _context.next = 19;
+                        _context.next = 18;
                         break;
 
-                    case 16:
-                        _context.prev = 16;
+                    case 15:
+                        _context.prev = 15;
                         _context.t0 = _context['catch'](3);
                         return _context.abrupt('return', done(_context.t0, false));
 
-                    case 19:
+                    case 18:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[3, 16]]);
+        }, _callee, undefined, [[3, 15]]);
     }));
 
     return function serializer(_x, _x2) {
