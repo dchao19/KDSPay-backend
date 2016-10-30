@@ -9,7 +9,8 @@ let config = {
     },
     auth: {
         secret: "AUTH0_SECRET",
-        userProfileSecret: "AUTH0_PROFILE_SECRET"
+        userProfileSecret: "AUTH0_PROFILE_SECRET",
+        transactionSecret: "TRANSACTION_SECRET"
     }
 };
 
