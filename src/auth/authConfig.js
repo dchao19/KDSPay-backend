@@ -34,6 +34,6 @@ let serializer = async (jwtPayload, done) => {
     } catch (e) {
         return done(e, false);
     }
-};
+};  
 
 passport.use(new JWTStrategy(jwtOptions, serializer));
