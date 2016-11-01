@@ -8,7 +8,9 @@ var AccountSchema = new Schema({
     currentBalance: Number,
     devices: [String],
     accountType: String,
-    transactions: [{type: Schema.ObjectId, ref: 'Transaction'}]
+    pendingAuthorizations: [String],
+    pendingTransactions: [String],
+    completedTransactions: [String]
 });
 
 let Account = mongoose.model('Account', AccountSchema);
