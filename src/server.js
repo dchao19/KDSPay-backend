@@ -7,6 +7,7 @@ import config from './config.js';
 import indexRoutes from './index/indexRoutes';
 import balanceRoutes from './balance/balanceRoutes';
 import authRoutes from './auth/authRoutes';
+import transactionRoutes from './transaction/transactionRoutes';
 
 import './dbInit.js';
 import './auth/authConfig.js';
@@ -28,6 +29,7 @@ app.use(passport.initialize());
 app.use('/', indexRoutes);
 app.use('/balance', balanceRoutes);
 app.use('/auth', authRoutes);
+app.use('/transaction', transactionRoutes);
 
 app.listen(port, () => {
     console.log(`Express server listening on port: ${port}`);

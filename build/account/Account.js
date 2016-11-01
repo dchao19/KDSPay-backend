@@ -17,6 +17,8 @@ var AccountSchema = new Schema({
     name: String,
     userID: String,
     currentBalance: Number,
+    devices: [String],
+    accountType: String,
     transactions: [{ type: Schema.ObjectId, ref: 'Transaction' }]
 });
 

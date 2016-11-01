@@ -1,4 +1,9 @@
-let noAccountError = () => {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var noAccountError = function noAccountError() {
     return {
         success: false,
         errorCode: 0,
@@ -6,7 +11,7 @@ let noAccountError = () => {
     };
 };
 
-let internalServerError = () => {
+var internalServerError = function internalServerError() {
     return {
         success: false,
         errorCode: 1,
@@ -14,7 +19,7 @@ let internalServerError = () => {
     };
 };
 
-let notTellerError = () => {
+var notTellerError = function notTellerError() {
     return {
         success: false,
         errorCode: 2,
@@ -22,7 +27,7 @@ let notTellerError = () => {
     };
 };
 
-let missingDataError = (dataType) => {
+var missingDataError = function missingDataError(dataType) {
     return {
         success: false,
         errorCode: 3,
@@ -30,7 +35,7 @@ let missingDataError = (dataType) => {
     };
 };
 
-let invalidTokenError = () => {
+var invalidTokenError = function invalidTokenError() {
     return {
         success: false,
         errorCode: 4,
@@ -38,10 +43,8 @@ let invalidTokenError = () => {
     };
 };
 
-export {
-    noAccountError,
-    internalServerError,
-    notTellerError,
-    missingDataError,
-    invalidTokenError
-};
+exports.noAccountError = noAccountError;
+exports.internalServerError = internalServerError;
+exports.notTellerError = notTellerError;
+exports.missingDataError = missingDataError;
+exports.invalidTokenError = invalidTokenError;
