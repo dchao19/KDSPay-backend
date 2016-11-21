@@ -40,6 +40,10 @@ var _transactionRoutes = require('./transaction/transactionRoutes');
 
 var _transactionRoutes2 = _interopRequireDefault(_transactionRoutes);
 
+var _deviceRegistrationRoutes = require('./deviceRegistration/deviceRegistrationRoutes.js');
+
+var _deviceRegistrationRoutes2 = _interopRequireDefault(_deviceRegistrationRoutes);
+
 require('./dbInit.js');
 
 require('./auth/authConfig.js');
@@ -62,6 +66,7 @@ app.use('/', _indexRoutes2.default);
 app.use('/balance', _balanceRoutes2.default);
 app.use('/auth', _authRoutes2.default);
 app.use('/transaction', _transactionRoutes2.default);
+app.use('/devices', _deviceRegistrationRoutes2.default);
 
 app.listen(port, function () {
     console.log('Express server listening on port: ' + port);

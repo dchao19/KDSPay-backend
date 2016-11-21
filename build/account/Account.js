@@ -18,8 +18,11 @@ var AccountSchema = new Schema({
     userID: String,
     currentBalance: Number,
     devices: [String],
+    secrets: [String],
     accountType: String,
-    transactions: [{ type: Schema.ObjectId, ref: 'Transaction' }]
+    pendingAuthorizations: [String],
+    pendingTransactions: [String],
+    completedTransactions: [String]
 });
 
 var Account = _mongoose2.default.model('Account', AccountSchema);

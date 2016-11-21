@@ -16,7 +16,15 @@ var _jsonwebtoken = require('jsonwebtoken');
 
 var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
-var _config = require('../config/config.js');
+var _crypto = require('crypto');
+
+var _crypto2 = _interopRequireDefault(_crypto);
+
+var _base64Url = require('base64-url');
+
+var _base64Url2 = _interopRequireDefault(_base64Url);
+
+var _config = require('../config.js');
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -36,8 +44,7 @@ router.use(_passport2.default.authenticate('jwt', { session: false }));
 
 router.get('/', function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(req, res) {
-        var user, _jwt;
-
+        var user, deviceJwt, deviceSecret;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -58,27 +65,46 @@ router.get('/', function () {
                         return _context.abrupt('return');
 
                     case 7:
-                        _jwt = _jwt.sign({}, _config2.default.deviceRegistration.secret);
+                        _context.prev = 7;
+                        deviceJwt = _jsonwebtoken2.default.sign({}, _config2.default.deviceRegistration.secret);
+                        deviceSecret = _base64Url2.default.encode(_crypto2.default.randomBytes(64));
 
-                        user.devices.push(_jwt);
-                        user.markModified();
+                        user.secrets.push(deviceSecret);
+                        user.devices.push(deviceJwt);
                         user.save();
 
-                        _context.next = 16;
+                        res.send({
+                            success: true,
+                            result: {
+                                deviceJwt: deviceJwt,
+                                deviceSecret: deviceSecret
+                            }
+                        });
+                        _context.next = 19;
                         break;
 
-                    case 13:
-                        _context.prev = 13;
-                        _context.t0 = _context['catch'](0);
+                    case 16:
+                        _context.prev = 16;
+                        _context.t0 = _context['catch'](7);
+                        throw new Error(_context.t0);
 
+                    case 19:
+                        _context.next = 25;
+                        break;
+
+                    case 21:
+                        _context.prev = 21;
+                        _context.t1 = _context['catch'](0);
+
+                        console.log(_context.t1);
                         res.status(404).send((0, _errors.noAccountError)());
 
-                    case 16:
+                    case 25:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[0, 13]]);
+        }, _callee, undefined, [[0, 21], [7, 16]]);
     }));
 
     return function (_x, _x2) {

@@ -7,6 +7,7 @@ var AccountSchema = new Schema({
     userID: String,
     currentBalance: Number,
     devices: [String],
+    secrets: [String],
     accountType: String,
     pendingAuthorizations: [String],
     pendingTransactions: [String],

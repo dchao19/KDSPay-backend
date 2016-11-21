@@ -8,6 +8,7 @@ import indexRoutes from './index/indexRoutes';
 import balanceRoutes from './balance/balanceRoutes';
 import authRoutes from './auth/authRoutes';
 import transactionRoutes from './transaction/transactionRoutes';
+import deviceRegistrationRoutes from './deviceRegistration/deviceRegistrationRoutes.js';
 
 import './dbInit.js';
 import './auth/authConfig.js';
@@ -30,6 +31,7 @@ app.use('/', indexRoutes);
 app.use('/balance', balanceRoutes);
 app.use('/auth', authRoutes);
 app.use('/transaction', transactionRoutes);
+app.use('/devices', deviceRegistrationRoutes);
 
 app.listen(port, () => {
     console.log(`Express server listening on port: ${port}`);

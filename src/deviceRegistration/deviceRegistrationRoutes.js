@@ -1,13 +1,14 @@
 import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
+import base64url from 'base64-url';
 
-import config from '../config/config.js';
+import config from '../config.js';
 import Account from '../account/Account.js';
 import {
-    noAccountError, 
-    notTellerError,
-    missingDataError
+    noAccountError,
+    notTellerError
 } from '../errors/errors.js';
 
 let router = express.Router();
@@ -21,13 +22,26 @@ router.get('/', async (req, res) => {
             res.status(401).send(notTellerError());
             return;
         }
-        
-        let jwt = jwt.sign({}, config.deviceRegistration.secret);
-        user.devices.push(jwt);
-        user.markModified();
-        user.save();
 
+        try {
+            let deviceJwt = jwt.sign({}, config.deviceRegistration.secret);
+            let deviceSecret = base64url.encode(crypto.randomBytes(64));
+            user.secrets.push(deviceSecret);
+            user.devices.push(deviceJwt);
+            user.save();
+
+            res.send({
+                success: true,
+                result: {
+                    deviceJwt,
+                    deviceSecret
+                }
+            });
+        } catch (e) {
+            throw new Error(e);
+        }
     } catch (e) {
+        console.log(e);
         res.status(404).send(noAccountError());
     }
 });
