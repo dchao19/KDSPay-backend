@@ -66,7 +66,7 @@ router.post('/verify', passport.authenticate('jwt', {session: false}), async (re
 
 router.post('/confirm', passport.authenticate('jwt', {session: false}), async (req, res) => {
     try {
-        let token = req.body.tokent;
+        let token = req.body.token;
         if (typeof token === 'undefined' || !token) {
             return res.status(400).send(missingDataError('User JWT/Token'));
         }
@@ -83,7 +83,10 @@ router.post('/confirm', passport.authenticate('jwt', {session: false}), async (r
                 result: {
                     validated: true,
                     confirmed: matched,
-                    payload: matched ? user : {}
+                    payload: matched ? {
+                        userID: user.userID,
+                        currentBalance: user.currentBalance
+                    } : {}
                 }
             });
         } catch (e) {

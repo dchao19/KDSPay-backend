@@ -53,7 +53,7 @@ router.get('/create', _passport2.default.authenticate('jwt', { session: false })
 
                         token = _jsonwebtoken2.default.sign({ sub: req.user.email }, _config2.default.auth.transactionSecret, {
                             expiresIn: "2m",
-                            issuer: "transactions.kdspay.org"
+                            issuer: "authorizations.kdspay.org"
                         });
 
 
@@ -124,7 +124,7 @@ router.post('/confirm', _passport2.default.authenticate('jwt', { session: false 
                 switch (_context2.prev = _context2.next) {
                     case 0:
                         _context2.prev = 0;
-                        token = req.body.tokent;
+                        token = req.body.token;
 
                         if (!(typeof token === 'undefined' || !token)) {
                             _context2.next = 4;
@@ -151,7 +151,10 @@ router.post('/confirm', _passport2.default.authenticate('jwt', { session: false 
                             result: {
                                 validated: true,
                                 confirmed: matched,
-                                payload: matched ? user : {}
+                                payload: matched ? {
+                                    userID: user.userID,
+                                    currentBalance: user.currentBalance
+                                } : {}
                             }
                         }));
 

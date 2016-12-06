@@ -17,9 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Schema = _mongoose2.default.Schema;
 
 var TransactionSchema = new Schema({
-    amount: Number,
-    transactionType: String,
-    authorizer: String
+    signature: String
 });
 
 TransactionSchema.plugin(_mongooseTimestamp2.default);

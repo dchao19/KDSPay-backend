@@ -38,10 +38,19 @@ let invalidTokenError = () => {
     };
 };
 
+let insufficientFundsError = () => {
+    return {
+        success: false,
+        errorCode: 5,
+        errorMessage: "The account has insufficient funds"
+    };
+};
+
 export {
     noAccountError,
     internalServerError,
     notTellerError,
     missingDataError,
-    invalidTokenError
+    invalidTokenError,
+    insufficientFundsError
 };

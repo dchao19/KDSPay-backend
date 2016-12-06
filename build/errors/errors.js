@@ -43,8 +43,17 @@ var invalidTokenError = function invalidTokenError() {
     };
 };
 
+var insufficientFundsError = function insufficientFundsError() {
+    return {
+        success: false,
+        errorCode: 5,
+        errorMessage: "The account has insufficient funds"
+    };
+};
+
 exports.noAccountError = noAccountError;
 exports.internalServerError = internalServerError;
 exports.notTellerError = notTellerError;
 exports.missingDataError = missingDataError;
 exports.invalidTokenError = invalidTokenError;
+exports.insufficientFundsError = insufficientFundsError;

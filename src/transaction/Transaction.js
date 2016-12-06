@@ -4,9 +4,7 @@ import timestamps from 'mongoose-timestamp';
 let Schema = mongoose.Schema;
 
 var TransactionSchema = new Schema({
-    amount: Number,
-    transactionType: String,
-    authorizer: String
+    signature: String
 });
 
 TransactionSchema.plugin(timestamps);
