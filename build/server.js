@@ -44,6 +44,10 @@ var _deviceRegistrationRoutes = require('./deviceRegistration/deviceRegistration
 
 var _deviceRegistrationRoutes2 = _interopRequireDefault(_deviceRegistrationRoutes);
 
+var _billingRoutes = require('./billing/billingRoutes.js');
+
+var _billingRoutes2 = _interopRequireDefault(_billingRoutes);
+
 require('./dbInit.js');
 
 require('./auth/authConfig.js');
@@ -54,7 +58,7 @@ var app = (0, _express2.default)();
 var port = _config2.default.port;
 
 app.set('view engine', 'pug');
-app.set('views', ['./src/auth']);
+app.set('views', ['./src/auth', './src/billing']);
 
 app.use((0, _morgan2.default)('dev'));
 app.use(_bodyParser2.default.json());
@@ -67,6 +71,7 @@ app.use('/balance', _balanceRoutes2.default);
 app.use('/auth', _authRoutes2.default);
 app.use('/transaction', _transactionRoutes2.default);
 app.use('/devices', _deviceRegistrationRoutes2.default);
+app.use('/billing', _billingRoutes2.default);
 
 app.listen(port, function () {
     console.log('Express server listening on port: ' + port);

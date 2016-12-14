@@ -1,0 +1,12 @@
+html
+    body
+        form(action='/billing/process' method='POST')
+            script(
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_agTNSnaJx0iF7MNijt9Zez3o"
+                data-amount="999"
+                data-name="Demo Site"
+                data-description="Widget"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+            )

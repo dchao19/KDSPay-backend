@@ -46,6 +46,14 @@ var router = _express2.default.Router();
 
 router.use('/authorization', _authorizationRoutes2.default);
 
+router.post('/create', _passport2.default.authenticate('jwt', { session: false }), function (req, res) {
+    var token = _jsonwebtoken2.default.sign({ userID: req.body.userID, amount: req.body.amount }, req.body.deviceToken);
+    res.send({
+        success: true,
+        token: token
+    });
+});
+
 router.post('/execute', _passport2.default.authenticate('jwt', { session: false }), function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(req, res) {
         var _ret;

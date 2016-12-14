@@ -9,6 +9,7 @@ import balanceRoutes from './balance/balanceRoutes';
 import authRoutes from './auth/authRoutes';
 import transactionRoutes from './transaction/transactionRoutes';
 import deviceRegistrationRoutes from './deviceRegistration/deviceRegistrationRoutes.js';
+import billingRoutes from './billing/billingRoutes.js';
 
 import './dbInit.js';
 import './auth/authConfig.js';
@@ -18,7 +19,8 @@ let port = config.port;
 
 app.set('view engine', 'pug');
 app.set('views', [
-    './src/auth'
+    './src/auth',
+    './src/billing'
 ]);
 
 app.use(logger('dev'));
@@ -32,6 +34,7 @@ app.use('/balance', balanceRoutes);
 app.use('/auth', authRoutes);
 app.use('/transaction', transactionRoutes);
 app.use('/devices', deviceRegistrationRoutes);
+app.use('/billing', billingRoutes);
 
 app.listen(port, () => {
     console.log(`Express server listening on port: ${port}`);

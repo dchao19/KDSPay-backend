@@ -20,6 +20,14 @@ let router = express.Router();
 
 router.use('/authorization', authorizationRoutes);
 
+router.post('/create', passport.authenticate('jwt', {session: false}), (req, res) => {
+    let token = jwt.sign({userID: req.body.userID, amount: req.body.amount}, req.body.deviceToken);
+    res.send({
+        success: true,
+        token
+    });
+});
+
 router.post('/execute', passport.authenticate('jwt', {session: false}), async (req, res) => {
     try {
         let transactionToken = req.body.token;

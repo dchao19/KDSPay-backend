@@ -11,6 +11,6 @@ html
                 'danielchao.auth0.com'
             );
             lock.on("authenticated", function(authResult) {
-                console.log(authResult);
+                window.location = `http://localhost:3000/auth/echo?userJWT=${authResult.idToken}`;
             });
             lock.show();

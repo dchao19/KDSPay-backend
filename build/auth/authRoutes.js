@@ -15,4 +15,7 @@ router.get('/login', function (req, res) {
     res.render('login.pug');
 });
 
+router.get('/echo', function (req, res) {
+    res.send(req.query.userJWT);
+});
 exports.default = router;
