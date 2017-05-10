@@ -14,6 +14,7 @@ let jwtOptions = {
 
 let serializer = async (jwtPayload, done) => {
     let userProfile = await requestProfile(jwtPayload.sub);
+    console.log(userProfile);
     try {
         let user = await Account.findOne({userID: jwtPayload.sub});
         if (user) {
@@ -34,6 +35,6 @@ let serializer = async (jwtPayload, done) => {
     } catch (e) {
         return done(e, false);
     }
-};  
+};
 
 passport.use(new JWTStrategy(jwtOptions, serializer));

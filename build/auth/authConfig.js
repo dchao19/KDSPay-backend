@@ -42,21 +42,23 @@ var serializer = function () {
 
                     case 2:
                         userProfile = _context.sent;
-                        _context.prev = 3;
-                        _context.next = 6;
+
+                        console.log(userProfile);
+                        _context.prev = 4;
+                        _context.next = 7;
                         return _Account2.default.findOne({ userID: jwtPayload.sub });
 
-                    case 6:
+                    case 7:
                         user = _context.sent;
 
                         if (!user) {
-                            _context.next = 9;
+                            _context.next = 10;
                             break;
                         }
 
                         return _context.abrupt('return', done(null, user));
 
-                    case 9:
+                    case 10:
                         userData = {
                             email: userProfile.email,
                             name: userProfile.name,
@@ -66,24 +68,24 @@ var serializer = function () {
 
 
                         user = new _Account2.default(userData);
-                        _context.next = 13;
+                        _context.next = 14;
                         return user.save();
 
-                    case 13:
+                    case 14:
                         result = _context.sent;
                         return _context.abrupt('return', done(null, result));
 
-                    case 17:
-                        _context.prev = 17;
-                        _context.t0 = _context['catch'](3);
+                    case 18:
+                        _context.prev = 18;
+                        _context.t0 = _context['catch'](4);
                         return _context.abrupt('return', done(_context.t0, false));
 
-                    case 20:
+                    case 21:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[3, 17]]);
+        }, _callee, undefined, [[4, 18]]);
     }));
 
     return function serializer(_x, _x2) {
